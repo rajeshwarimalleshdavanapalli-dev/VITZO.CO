@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f2eb">
+  <meta name="description" content="Men's classics, oversized fits, and premium streetwear from VITZO.CO. Good clothes, no dress code.">
+  <title>VITZO.CO — Menswear, no dress code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f5f2eb;
+      --ink: #20251e;
+      --muted: #77786e;
+      --olive: #424a37;
+      --line: #dedbd2;
+      --clay: #b65b42;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; }
+
+    .announcement {
+      min-height: 34px; display: flex; justify-content: center; align-items: center;
+      padding: 8px 18px; background: var(--olive); color: #f7f4ec;
+      font-size: 9px; letter-spacing: .17em; text-align: center; text-transform: uppercase;
+    }
+    .site-header {
+      height: 75px; padding: 0 6.2%; display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; border-bottom: 1px solid var(--line); position: relative; z-index: 5;
+    }
+    .nav-links, .header-actions { display: flex; align-items: center; gap: 29px; }
+    .nav-links a, .header-actions button, .header-actions a {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .12em;
+    }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--clay); }
+    .brand-lockup { display: flex; align-items: center; gap: 9px; justify-self: center; }
+    .brand-crest { width: 31px; height: 35px; flex: 0 0 auto; color: var(--olive); }
+    .brand-name { display: block; font-family: var(--serif); font-size: 23px; line-height: 1; letter-spacing: .15em; font-weight: 600; }
+    .brand-caption { display: block; margin-top: 5px; color: var(--muted); font-size: 6px; line-height: 1; letter-spacing: .22em; text-align: center; text-transform: uppercase; }
+    .header-actions { justify-content: flex-end; gap: 22px; }
+    .header-actions button, .icon-button, .menu-toggle {
+      border: 0; background: transparent; padding: 8px 0; cursor: pointer;
+    }
+    .bag-button { display: flex; align-items: center; gap: 7px; }
+    .bag-count { display: inline-flex; width: 18px; height: 18px; border: 1px solid var(--ink); border-radius: 50%; align-items: center; justify-content: center; font-size: 9px; }
+    .menu-toggle { display: none; }
+
+    .hero {
+      min-height: 565px; margin: 22px 2.2% 0; position: relative; overflow: hidden;
+      display: flex; align-items: center; background: #d3cfc1;
+    }
+    .hero-image {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 9%;
+      filter: saturate(.78); transform: scaleX(-1);
+    }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28,32,25,.61), rgba(28,32,25,.17) 58%, rgba(28,32,25,.02)); }
+    .hero-content { position: relative; z-index: 1; color: #fffdf6; max-width: 580px; padding: 62px 0 62px 9%; }
+    .eyebrow { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; }
+    .hero h1 { margin: 18px 0 17px; font: 500 clamp(54px, 7vw, 94px)/.98 var(--serif); letter-spacing: -.055em; }
+    .hero h1 em { font-weight: 500; }
+    .hero-copy { max-width: 340px; font-size: 12px; line-height: 1.8; color: rgba(255,253,246,.85); }
+    .button-link {
+      display: inline-flex; align-items: center; gap: 22px; margin-top: 21px; padding: 14px 17px;
+      background: var(--paper); color: var(--ink); font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      transition: background .2s, color .2s;
+    }
+    .button-link:hover { background: var(--clay); color: white; }
+    .button-link span { font-size: 15px; }
+    .hero-note { position: absolute; z-index: 1; right: 4%; bottom: 25px; color: white; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+
+    .ticker { margin-top: 22px; padding: 13px 10px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; white-space: nowrap; }
+    .ticker-track { display: flex; justify-content: space-around; gap: 22px; font: italic 15px var(--serif); color: var(--olive); }
+    .ticker-track span::after { content: " ✳"; color: var(--clay); margin-left: 32px; font: 10px var(--sans); }
+
+    .section { padding: 89px 7% 90px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+    .section-kicker { color: var(--muted); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
+    h2 { margin: 9px 0 0; font: 500 clamp(34px, 4vw, 49px)/1.1 var(--serif); letter-spacing: -.04em; }
+    .section-heading p { max-width: 250px; margin: 0 0 5px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .filters { display: flex; gap: 9px; margin-bottom: 25px; overflow-x: auto; scrollbar-width: none; }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter-button { flex: 0 0 auto; padding: 10px 15px; border: 1px solid var(--line); border-radius: 30px; background: transparent; color: #5e6057; font-size: 9px; letter-spacing: .09em; text-transform: uppercase; cursor: pointer; transition: .2s; }
+    .filter-button:hover, .filter-button.active { background: var(--olive); border-color: var(--olive); color: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .product-card { min-width: 0; }
+    .product-image-wrap { position: relative; overflow: hidden; background: #e6e2d9; aspect-ratio: .77; }
+    .product-image { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .product-image { transform: scale(1.045); }
+    .product-badge { position: absolute; top: 12px; left: 12px; padding: 7px 9px; background: var(--paper); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+    .quick-add { position: absolute; left: 10px; right: 10px; bottom: 10px; width: calc(100% - 20px); padding: 13px; border: 0; background: rgba(245,242,235,.96); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transform: translateY(8px); opacity: 0; transition: .22s; }
+    .product-card:hover .quick-add, .quick-add:focus-visible { opacity: 1; transform: translateY(0); }
+    .product-info { padding: 13px 1px 0; }
+    .product-name { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; line-height: 1.5; }
+    .product-price { white-space: nowrap; font-size: 10px; }
+    .product-detail { margin-top: 5px; color: var(--muted); font-size: 9px; letter-spacing: .04em; }
+    .color-dots { display: flex; gap: 5px; margin-top: 10px; }
+    .color-dot { width: 9px; height: 9px; border: 1px solid rgba(32,37,30,.18); border-radius: 50%; }
+    .empty-state { grid-column: 1/-1; padding: 55px 10px; color: var(--muted); text-align: center; font: italic 20px var(--serif); }
+    .story { display: grid; grid-template-columns: 1.1fr .9fr; min-height: 440px; background: #e8e4da; }
+    .story-image { width: 100%; height: 100%; min-height: 440px; object-fit: cover; }
+    .story-copy { align-self: center; max-width: 490px; padding: 60px 12%; }
+    .story-copy h2 { font-size: clamp(36px, 4vw, 54px); }
+    .story-copy p { margin: 18px 0 0; color: #65675e; font-size: 11px; line-height: 1.9; }
+    .text-link { display: inline-flex; gap: 12px; align-items: center; margin-top: 25px; padding-bottom: 7px; border-bottom: 1px solid var(--ink); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+    .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin-top: 70px; }
+    .category-tile { position: relative; min-height: 310px; overflow: hidden; background: #d8d2c5; }
+    .category-tile img { width: 100%; height: 100%; min-height: 310px; display: block; object-fit: cover; transition: transform .5s; }
+    .category-tile:hover img { transform: scale(1.04); }
+    .category-tile::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(22,25,20,.62)); }
+    .category-label { position: absolute; z-index: 1; left: 21px; bottom: 19px; color: white; }
+    .category-label small { font-size: 8px; letter-spacing: .15em; text-transform: uppercase; }
+    .category-label h3 { margin: 5px 0 0; font: 500 25px var(--serif); }
+
+    .newsletter { margin: 0 2.2% 22px; padding: 70px 20px; background: var(--olive); color: #f5f2eb; text-align: center; }
+    .newsletter h2 { font-size: 40px; }
+    .newsletter p { margin: 13px 0 22px; color: rgba(245,242,235,.74); font-size: 10px; }
+    .newsletter-form { display: flex; width: min(390px, 100%); margin: 0 auto; border-bottom: 1px solid rgba(245,242,235,.62); }
+    .newsletter-form input { flex: 1; min-width: 0; padding: 12px 0; border: 0; outline: 0; background: transparent; color: white; font-size: 10px; }
+    .newsletter-form input::placeholder { color: rgba(245,242,235,.65); }
+    .newsletter-form button { border: 0; background: transparent; color: white; font-size: 9px; letter-spacing: .13em; text-transform: uppercase; cursor: pointer; }
+    .newsletter-message { min-height: 15px; margin-top: 12px; font-size: 10px; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px 6.2% 32px; color: var(--muted); font-size: 9px; letter-spacing: .08em; }
+    .footer-links { display: flex; gap: 19px; }
+    .toast { position: fixed; z-index: 10; left: 50%; bottom: 24px; padding: 13px 19px; background: var(--ink); color: white; font-size: 10px; letter-spacing: .05em; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; transition: .25s; }
+    .toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 760px) {
+      .site-header { height: 66px; padding: 0 5%; grid-template-columns: 1fr auto 1fr; }
+      .menu-toggle { display: block; justify-self: start; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+      .nav-links { display: none; position: absolute; top: 65px; left: 0; right: 0; padding: 19px 5%; background: var(--paper); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 19px; }
+      .nav-links.open { display: flex; }
+      .brand-lockup { gap: 7px; }
+      .brand-crest { width: 26px; height: 30px; }
+      .brand-name { font-size: 19px; }
+      .brand-caption { font-size: 5px; }
+      .header-actions { gap: 12px; }
+      .search-button { display: none; }
+      .header-actions button { font-size: 9px; }
+      .header-actions a { font-size: 9px; }
+      .hero { min-height: 530px; margin: 12px 3% 0; }
+      .hero-image { object-position: 52% 9%; }
+      .hero::after { background: linear-gradient(90deg, rgba(28,32,25,.62), rgba(28,32,25,.18)); }
+      .hero-content { padding: 48px 8%; }
+      .hero h1 { font-size: clamp(57px, 13vw, 82px); }
+      .hero-note { right: 5%; font-size: 8px; }
+      .ticker-track { justify-content: flex-start; width: max-content; animation: ticker 24s linear infinite; }
+      @keyframes ticker { to { transform: translateX(-45%); } }
+      .section { padding: 64px 5% 68px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 23px; }
+      .section-heading p { max-width: 340px; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 11px; }
+      .quick-add { opacity: 1; transform: none; padding: 11px 6px; font-size: 8px; }
+      .product-image-wrap { aspect-ratio: .72; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 320px; max-height: 420px; }
+      .story-copy { padding: 48px 8%; }
+      .categories { grid-template-columns: 1fr; gap: 11px; margin-top: 52px; }
+      .category-tile, .category-tile img { min-height: 290px; max-height: 390px; }
+      .newsletter { margin: 0 3% 10px; padding: 58px 20px; }
+      .newsletter h2 { font-size: 34px; }
+      footer { padding: 22px 5% 28px; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">A little different. A lot more you. &nbsp;·&nbsp; Free shipping on orders over ₹4,999</div>
+  <header class="site-header">
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#shop">Shop all</a>
+      <a href="#categories">The edits</a>
+      <a href="#story">Our thing</a>
+    </nav>
+    <a class="brand-lockup" href="#" aria-label="VITZO.CO home">
+      <svg class="brand-crest" viewBox="0 0 44 48" fill="none" aria-hidden="true" focusable="false">
+        <path d="M22 2.5 39.5 9v13.8c0 10-7.2 17.8-17.5 22.2C11.7 40.6 4.5 32.8 4.5 22.8V9L22 2.5Z" stroke="currentColor" stroke-width="1.25"/>
+        <path d="m13.5 16.5 8.5 17 8.5-17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="m22 8 1.15 2.35L25.5 11.5l-2.35 1.15L22 15l-1.15-2.35L18.5 11.5l2.35-1.15L22 8Z" fill="#a99163"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">VITZO.CO</span>
+        <span class="brand-caption">Menswear</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <a href="login.html">Sign in</a>
+      <button class="search-button" id="searchButton" aria-label="Search products">Search</button>
+      <button class="bag-button" id="bagButton" aria-label="Shopping bag">Bag <span class="bag-count" id="bagCount">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="VITZO.CO collection">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1787045098569-2e17ae871df4?auto=format&fit=crop&w=2000&q=85" alt="Man in a tailored grey coat, scarf and beige trousers">
+      <div class="hero-content">
+        <div class="eyebrow">Menswear, no dress code</div>
+        <h1>Well dressed.<br><em>Never boring.</em></h1>
+        <p class="hero-copy">For the overthinkers, the overdressers and the “I just threw this on” guys. Meet your new favourite anything.</p>
+        <a class="button-link" href="#shop">Find your thing <span>↗</span></a>
+      </div>
+      <div class="hero-note">Made for your own kind of classic · Est. 2024</div>
+    </section>
+
+    <div class="ticker" aria-label="Clothing for every version of you">
+      <div class="ticker-track"><span>Old soul, new rules</span><span>Not made to blend in</span><span>Wear it your way</span><span>Old soul, new rules</span></div>
+    </div>
+
+    <section class="section" id="shop">
+      <div class="section-heading">
+        <div><div class="section-kicker">The good stuff / 01</div><h2>Looks like you.</h2></div>
+        <p>A little polished, a little unexpected. All very much you.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter products">
+        <button class="filter-button active" data-filter="all">Everything</button>
+        <button class="filter-button" data-filter="classics">Quiet classics</button>
+        <button class="filter-button" data-filter="streetwear">Big energy</button>
+        <button class="filter-button" data-filter="layers">Easy layers</button>
+      </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="story" id="story">
+      <img class="story-image" src="https://images.unsplash.com/photo-1792007194806-72a27dd975b0?auto=format&fit=crop&w=1200&q=85" alt="Man in a light blue linen shirt and grey trousers in a sunlit park">
+      <div class="story-copy">
+        <div class="section-kicker">A note from us</div>
+        <h2>Less “what’s in”.<br><em>More what’s you.</em></h2>
+        <p>We like a good blazer. We also like wearing one with ridiculous sneakers. VITZO.CO is menswear for dressing like yourself, not like a rulebook. Thoughtful pieces, easy fits, and room to make it weird.</p>
+        <a href="#categories" class="text-link">Get to know your wardrobe <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-heading">
+        <div><div class="section-kicker">Three moods, zero rules</div><h2>Pick your own plot.</h2></div>
+      </div>
+      <div class="categories">
+        <a class="category-tile" href="#shop" data-category="classics">
+          <img src="https://images.unsplash.com/photo-1781613594947-f74c1958b6c6?auto=format&fit=crop&w=900&q=80" alt="Man in a tailored grey suit and sunglasses">
+          <div class="category-label"><small>For the forever pieces</small><h3>The quiet classics</h3></div>
+        </a>
+        <a class="category-tile" href="#shop" data-category="streetwear">
+          <img src="https://images.unsplash.com/photo-1792007194806-72a27dd975b0?auto=format&fit=crop&w=900&q=80" alt="Men's relaxed linen look with a bold attitude">
+          <div class="category-label"><small>For the extra days</small><h3>Big energy</h3></div>
+        </a>
+        <a class="category-tile" href="#shop" data-category="layers">
+          <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=80" alt="Men's leather jacket, an easy wardrobe layer">
+          <div class="category-label"><small>For the in-between</small><h3>Throw-on layers</h3></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="section-kicker" style="color:#d2d3c9">The occasional good email</div>
+      <h2>A little off the record.</h2>
+      <p>New drops, outfit ideas, and the good stuff. Never the boring stuff.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="emailInput" placeholder="Your email address" aria-label="Your email address" required>
+        <button type="submit">Count me in ↗</button>
+      </form>
+      <div class="newsletter-message" id="newsletterMessage" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer>
+    <div>VITZO.CO. DRESS LIKE YOU MEAN IT.</div>
+    <div class="footer-links"><a href="#shop">Instagram</a><a href="#story">Shipping & returns</a><a href="#story">Say hello</a></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const products = [
+      { name: "The Sunday Blazer", type: "Quiet classic", category: "classics", price: 4890, badge: "A forever thing", image: "photo-1781613594947-f74c1958b6c6", colors: ["#494d3b", "#c5b69d", "#20241f"] },
+      { name: "Room For More Shirt", type: "Oversized cotton poplin", category: "streetwear", price: 2490, badge: "Roomy by design", image: "photo-1792007194806-72a27dd975b0", colors: ["#e8e4d8", "#a9b0a1", "#b76c50"] },
+      { name: "The Not-So-Basic Knit", type: "Soft cotton blend", category: "layers", price: 3290, badge: "New favourite", image: "photo-1788500304864-724658f3e260", colors: ["#a95840", "#d0c4ae", "#3f4938"] },
+      { name: "Big Deal Trousers", type: "Relaxed, pleated fit", category: "classics", price: 3790, badge: "", image: "photo-1792007194806-72a27dd975b0", colors: ["#81785f", "#343a32", "#c8c0b3"] },
+      { name: "Off-Duty Overshirt", type: "A layer with plans", category: "layers", price: 3590, badge: "Easy does it", image: "photo-1787045098569-2e17ae871df4", colors: ["#65705d", "#c1ac92", "#30332e"] },
+      { name: "The Plot Twist Tee", type: "Heavyweight, boxy fit", category: "streetwear", price: 1690, badge: "Little loud", image: "photo-1521572163474-6864f9cf17ab", colors: ["#d9d4c8", "#c66b4c", "#30342e"] },
+      { name: "Borrowed-From-Your-Ex Coat", type: "The oversized one", category: "streetwear", price: 6290, badge: "Big feelings", image: "photo-1787045098569-2e17ae871df4", colors: ["#626750", "#b99678", "#343632"] },
+      { name: "Good Jeans, Actually", type: "Straight-leg denim", category: "classics", price: 3190, badge: "", image: "photo-1542272604-787c3835535d", colors: ["#4c5961", "#252c30", "#9d9a8b"] }
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const bagCount = document.getElementById("bagCount");
+    const toast = document.getElementById("toast");
+    let activeFilter = "all";
+    let query = "";
+    let bagItems = 0;
+    let toastTimer;
+
+    function renderProducts() {
+      const visibleProducts = products.filter(product =>
+        (activeFilter === "all" || product.category === activeFilter) &&
+        `${product.name} ${product.type}`.toLowerCase().includes(query)
+      );
+      if (!visibleProducts.length) {
+        productGrid.innerHTML = '<div class="empty-state">Nothing found. Try a different search?</div>';
+        return;
+      }
+      productGrid.innerHTML = visibleProducts.map(product => `
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/${product.image}?auto=format&fit=crop&w=800&q=80" alt="${product.name}, ${product.type}" loading="lazy">
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+            <button class="quick-add" data-add="${product.name}" aria-label="Add ${product.name} to bag">Add to bag &nbsp; +</button>
+          </div>
+          <div class="product-info">
+            <div class="product-name"><span>${product.name}</span><span class="product-price">₹${product.price.toLocaleString("en-IN")}</span></div>
+            <div class="product-detail">${product.type}</div>
+            <div class="color-dots" aria-label="Available colours">${product.colors.map(color => `<span class="color-dot" style="background:${color}"></span>`).join("")}</div>
+          </div>
+        </article>`).join("");
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("visible"), 2300);
+    }
+
+    document.querySelector(".filters").addEventListener("click", event => {
+      const button = event.target.closest("[data-filter]");
+      if (!button) return;
+      activeFilter = button.dataset.filter;
+      document.querySelectorAll(".filter-button").forEach(item => item.classList.toggle("active", item === button));
+      renderProducts();
+    });
+
+    productGrid.addEventListener("click", event => {
+      const button = event.target.closest("[data-add]");
+      if (!button) return;
+      bagItems += 1;
+      bagCount.textContent = bagItems;
+      showToast(`${button.dataset.add} added to your bag.`);
+    });
+
+    document.querySelectorAll(".category-tile").forEach(tile => {
+      tile.addEventListener("click", () => {
+        activeFilter = tile.dataset.category;
+        query = "";
+        document.querySelectorAll(".filter-button").forEach(button => button.classList.toggle("active", button.dataset.filter === activeFilter));
+        renderProducts();
+      });
+    });
+
+    document.getElementById("searchButton").addEventListener("click", () => {
+      const term = window.prompt("What are you looking for?");
+      if (term === null) return;
+      query = term.trim().toLowerCase();
+      activeFilter = "all";
+      document.querySelectorAll(".filter-button").forEach(button => button.classList.toggle("active", button.dataset.filter === "all"));
+      renderProducts();
+      document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("bagButton").addEventListener("click", () => {
+      showToast(bagItems ? `Your bag has ${bagItems} ${bagItems === 1 ? "item" : "items"}.` : "Your bag is looking a little empty.");
+    });
+
+    document.getElementById("menuToggle").addEventListener("click", event => {
+      const nav = document.getElementById("navLinks");
+      const open = nav.classList.toggle("open");
+      event.currentTarget.setAttribute("aria-expanded", String(open));
+    });
+    document.querySelectorAll("#navLinks a").forEach(link => link.addEventListener("click", () => {
+      document.getElementById("navLinks").classList.remove("open");
+      document.getElementById("menuToggle").setAttribute("aria-expanded", "false");
+    }));
+
+    document.getElementById("newsletterForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const email = document.getElementById("emailInput");
+      if (!email.checkValidity()) { email.reportValidity(); return; }
+      document.getElementById("newsletterMessage").textContent = "You're on the list. Talk soon.";
+      email.value = "";
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>

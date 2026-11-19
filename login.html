@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f2eb">
+  <meta name="description" content="Sign in to your VITZO.CO account. Menswear, no dress code.">
+  <title>Sign in — VITZO.CO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f5f2eb;
+      --ink: #20251e;
+      --muted: #77786e;
+      --olive: #424a37;
+      --line: #dedbd2;
+      --brass: #a99163;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    .login-header {
+      height: 82px; padding: 0 7%; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand-lockup { display: flex; align-items: center; gap: 9px; }
+    .brand-crest { width: 31px; height: 35px; flex: 0 0 auto; color: var(--olive); }
+    .brand-name { display: block; font: 600 23px/1 var(--serif); letter-spacing: .15em; }
+    .brand-caption { display: block; margin-top: 5px; color: var(--muted); font-size: 6px; line-height: 1; letter-spacing: .22em; text-align: center; text-transform: uppercase; }
+    .back-link { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .back-link span { padding-left: 7px; color: var(--brass); font-size: 14px; }
+    .auth-shell {
+      width: min(1120px, calc(100% - 64px)); min-height: 610px; margin: 30px auto 44px;
+      display: grid; grid-template-columns: 1fr 1fr; background: #eeebe3;
+    }
+    .auth-visual { position: relative; min-height: 610px; overflow: hidden; background: #c8c0b0; }
+    .auth-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 54% 18%; }
+    .auth-visual::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(28,32,25,.64)); }
+    .visual-copy { position: absolute; z-index: 1; left: 9%; right: 9%; bottom: 8%; color: #fffdf6; }
+    .visual-copy small { font-size: 8px; letter-spacing: .2em; text-transform: uppercase; }
+    .visual-copy h2 { max-width: 390px; margin: 12px 0 0; font: 500 clamp(31px, 4vw, 48px)/1.08 var(--serif); letter-spacing: -.035em; }
+    .visual-copy h2 em { font-weight: 500; }
+    .auth-panel { display: flex; align-items: center; justify-content: center; padding: 60px clamp(35px, 7vw, 90px); }
+    .auth-content { width: 100%; max-width: 360px; }
+    .eyebrow { color: var(--muted); font-size: 8px; letter-spacing: .19em; text-transform: uppercase; }
+    h1 { margin: 12px 0 9px; font: 500 clamp(35px, 4vw, 47px)/1.1 var(--serif); letter-spacing: -.04em; }
+    .intro { margin: 0 0 30px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .field { margin-top: 19px; }
+    .field label { display: block; margin-bottom: 8px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .field input {
+      width: 100%; height: 46px; padding: 0 12px; border: 1px solid #d5d1c7;
+      border-radius: 0; outline: 0; background: rgba(255,255,255,.32); color: var(--ink); font-size: 11px;
+    }
+    .field input:focus { border-color: var(--olive); box-shadow: 0 0 0 2px rgba(66,74,55,.1); }
+    .password-wrap { position: relative; }
+    .password-wrap input { padding-right: 60px; }
+    .password-toggle { position: absolute; top: 0; right: 11px; height: 46px; padding: 0; border: 0; background: transparent; color: var(--muted); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+    .form-options { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 17px 0 23px; }
+    .remember { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 9px; }
+    .remember input { width: 13px; height: 13px; margin: 0; accent-color: var(--olive); }
+    .forgot-button { padding: 0; border: 0; border-bottom: 1px solid var(--brass); background: transparent; color: var(--ink); font-size: 9px; cursor: pointer; }
+    .submit-button {
+      width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 14px;
+      border: 1px solid var(--olive); background: var(--olive); color: var(--paper);
+      font-size: 9px; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; transition: .2s;
+    }
+    .submit-button:hover { border-color: var(--ink); background: var(--ink); }
+    .submit-button span { font-size: 14px; }
+    .form-message { min-height: 16px; margin-top: 13px; color: var(--olive); font-size: 10px; line-height: 1.5; }
+    .auth-foot { margin-top: 23px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; text-align: center; }
+    .auth-foot a { color: var(--ink); border-bottom: 1px solid var(--brass); }
+    footer { padding: 0 7% 26px; color: var(--muted); font-size: 8px; letter-spacing: .1em; text-align: center; }
+
+    @media (max-width: 720px) {
+      .login-header { height: 70px; padding: 0 5%; }
+      .brand-crest { width: 27px; height: 31px; }
+      .brand-name { font-size: 20px; }
+      .back-link { font-size: 8px; }
+      .auth-shell { width: calc(100% - 24px); margin: 12px auto 28px; grid-template-columns: 1fr; }
+      .auth-visual { min-height: 290px; }
+      .auth-panel { padding: 44px 9% 48px; }
+      .visual-copy { bottom: 7%; }
+      .visual-copy h2 { font-size: 34px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="login-header">
+    <a class="brand-lockup" href="index.html" aria-label="VITZO.CO home">
+      <svg class="brand-crest" viewBox="0 0 44 48" fill="none" aria-hidden="true" focusable="false">
+        <path d="M22 2.5 39.5 9v13.8c0 10-7.2 17.8-17.5 22.2C11.7 40.6 4.5 32.8 4.5 22.8V9L22 2.5Z" stroke="currentColor" stroke-width="1.25"/>
+        <path d="m13.5 16.5 8.5 17 8.5-17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="m22 8 1.15 2.35L25.5 11.5l-2.35 1.15L22 15l-1.15-2.35L18.5 11.5l2.35-1.15L22 8Z" fill="#a99163"/>
+      </svg>
+      <span>
+        <span class="brand-name">VITZO.CO</span>
+        <span class="brand-caption">Menswear</span>
+      </span>
+    </a>
+    <a class="back-link" href="index.html#shop">Back to the store <span>↗</span></a>
+  </header>
+
+  <main class="auth-shell">
+    <section class="auth-visual" aria-label="VITZO.CO menswear">
+      <img src="https://images.unsplash.com/photo-1787045098569-2e17ae871df4?auto=format&fit=crop&w=1200&q=85" alt="Man wearing a tailored grey coat and beige trousers">
+      <div class="visual-copy">
+        <small>VITZO.CO / The considered wardrobe</small>
+        <h2>Good taste.<br><em>On your own terms.</em></h2>
+      </div>
+    </section>
+
+    <section class="auth-panel" aria-labelledby="loginTitle">
+      <div class="auth-content">
+        <div class="eyebrow">Your VITZO.CO account</div>
+        <h1 id="loginTitle">Welcome back.</h1>
+        <p class="intro">Sign in to pick up where your good taste left off.</p>
+        <form id="loginForm">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+              <button class="password-toggle" id="passwordToggle" type="button" aria-pressed="false">Show</button>
+            </div>
+          </div>
+          <div class="form-options">
+            <label class="remember"><input type="checkbox" name="remember"> Keep me signed in</label>
+            <button class="forgot-button" id="forgotButton" type="button">Forgot password?</button>
+          </div>
+          <button class="submit-button" type="submit">Sign in <span>↗</span></button>
+          <div class="form-message" id="formMessage" aria-live="polite"></div>
+        </form>
+        <div class="auth-foot">New to VITZO.CO? <a href="index.html#shop">Explore the collection</a></div>
+      </div>
+    </section>
+  </main>
+  <footer>VITZO.CO. DRESS LIKE YOU MEAN IT.</footer>
+
+  <script>
+    const password = document.getElementById("password");
+    const passwordToggle = document.getElementById("passwordToggle");
+    const formMessage = document.getElementById("formMessage");
+
+    passwordToggle.addEventListener("click", () => {
+      const showing = password.type === "password";
+      password.type = showing ? "text" : "password";
+      passwordToggle.textContent = showing ? "Hide" : "Show";
+      passwordToggle.setAttribute("aria-pressed", String(showing));
+    });
+
+    document.getElementById("forgotButton").addEventListener("click", () => {
+      formMessage.textContent = "Password reset is not connected yet. Please contact VITZO.CO support.";
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", event => {
+      event.preventDefault();
+      formMessage.textContent = "This is a demo sign-in. Account authentication is not connected yet.";
+    });
+  </script>
+</body>
+</html>
